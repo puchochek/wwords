@@ -11,7 +11,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class AppComponent {
   wwordsServer = 'https://wwords-server.herokuapp.com/translate?word=';
   // wwordsServer = 'http://localhost:3000/translate?word=';
-  translate = 'any';
+  translate = '';
   constructor(private httpClient: HttpClient){}
   onKey(event: any) { // without type info
     this.httpClient.get(this.wwordsServer + event.target.value, {
