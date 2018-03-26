@@ -11,18 +11,30 @@ import { HttpHeaders } from '@angular/common/http';
 export class AppComponent {
   wwordsServer = 'https://wwords-server.herokuapp.com/translate?word=';
   // wwordsServer = 'http://localhost:3000/translate?word=';
-  translate = '';
-  constructor(private httpClient: HttpClient){}
-  onKey(event: any) { // without type info
-    this.httpClient.get(this.wwordsServer + event.target.value, {
-      withCredentials: true
-    })
-      .subscribe(res => {
-        this.translate = JSON.parse(JSON.stringify(res)).word;
-      },
-      err => {
+  translate: string = '';
+  timeId: any;
+
+  constructor(private httpClient: HttpClient) {
+    this.httpClient.get(this.wwordsServer + 'wake up', { withCredentials: true });
+  }
+
+  onKey(event: any) {
+    clearTimeout(this.timeId);
+    if (event.target.value) {
+      this.timeId = setTimeout(() => {
+        this.getTranslate(event.target.value);
+      }, 1000);
+    } else {
+      this.translate = '';
+    }
+  }
+
+  getTranslate(word) {
+    this.httpClient.get(this.wwordsServer + word, { withCredentials: true })
+      .subscribe((res: any) => {
+        this.translate = res.word;
+      }, err => {
         console.log('err: ', err);
       });
-   
   }
 }
