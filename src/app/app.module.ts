@@ -4,11 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
+import { TranslationComponent } from './translation/translation.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TranslationComponent
   ],
   imports: [
     BrowserModule,
