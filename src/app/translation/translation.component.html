@@ -1,9 +1,17 @@
 <div style="text-align:center">
-  <p><b>Введи слово:</b><br>
-  <input (keyup)="onKey($event)" type="text" size="40">
- </p>
+  <p>
+    <b>What do you want to know?:</b>
+    <br>
+    <input (keyup)="onKey($event)" type="text" size="40">
+  </p>
+  <div *ngIf="loading">
+    <h2>I'm looking for translation</h2>
+  </div>
+  <p>
+    <b>Here is your word:</b>
+    <br>
  
- <p><b>Здесь будет перевод:</b><br>
-  <input value="{{ translate }}"  type="text" size="40">
- </p>
-</div>
+    <li *ngFor="let oneWord of translate">
+      {{ oneWord }}
+    </li>
+  </p>
