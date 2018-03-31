@@ -1,17 +1,22 @@
 <div style="text-align:center">
   <p>
-    <b>What do you want to know?:</b>
+    <span class="question">What do you want to know?:</span>
     <br>
-    <input (keyup)="onKey($event)" type="text" size="40">
+    <input [(ngModel)]="word" (keyup)="onKey()" type="text" size="40">
+    <button (click)="clearInput()">Clear</button>
   </p>
   <div *ngIf="loading">
-    <h2>I'm looking for translation</h2>
+    <span class="loading">I'm looking for translation</span>
   </div>
-  <p>
-    <b>Here is your word:</b>
+
+  <div *ngIf="translate.length">
+    <span class="response">Here is your word:</span>
     <br>
- 
-    <li *ngFor="let oneWord of translate">
-      {{ oneWord }}
-    </li>
-  </p>
+    <div class="translation">
+      <ul>
+        <li *ngFor="let oneWord of translate">
+          {{ oneWord }}
+        </li>
+      </ul>
+    </div>
+  </div>

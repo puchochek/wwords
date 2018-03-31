@@ -1,0 +1,15 @@
+.question {
+  font-weight: bold;
+}
+
+.response {
+  font-weight: bold;
+}
+
+.loading {
+  color: grey;
+}
+
+.translation {
+  border: 3px groove grey;
+}

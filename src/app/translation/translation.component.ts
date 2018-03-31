@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { WwordsServerService } from '../wwords-server.service';
 
 @Component({
   selector: 'app-translation',
@@ -9,48 +7,37 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./translation.component.css']
 })
 export class TranslationComponent implements OnInit {
-  wwordsServer = 'https://wwords-server.herokuapp.com/translate?word=';
-  // wwordsServer = 'http://localhost:3000/translate?word=';
-  translate: string = '';
+  translate: any = [];
   timeId: any;
   arr: any;
   loading: boolean = false;
-  constructor(private httpClient: HttpClient) {
+  word: string = '';
 
-    this.httpClient.get(this.wwordsServer + 'wake up', { withCredentials: true })
-      .subscribe();
-  }
+  constructor(
+    private wwordsServer: WwordsServerService
+  ) { }
 
   ngOnInit() {
   }
 
-  onKey(event: any) {
-  
-
+  onKey() {
     clearTimeout(this.timeId);
-  
-    if (event.target.value) {
-
+    if (this.word) {
       this.timeId = setTimeout(() => {
-        this.getTranslate(event.target.value);
-      }, 1000);
-     
+        this.loading = true;
+        this.wwordsServer.getTranslate(this.word)
+          .subscribe(words => {
+            this.translate = words;
+            this.loading = false;
+          });
+      }, 2000);
     } else {
-      this.translate = '';
+      this.translate = [];
     }
   }
 
-  getTranslate(word) {
-    this.loading = true;
-    this.httpClient.get(this.wwordsServer + word, { withCredentials: true })
-
-      .subscribe((res: any) => {
-       
-       
-        this.translate = res.words;
-        this.loading = false;
-      }, err => {
-        console.log('err: ', err);
-      });
+  clearInput() {
+    this.word = '';
+    this.translate = [];
   }
 }
