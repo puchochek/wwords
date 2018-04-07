@@ -8,20 +8,37 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class WwordsServerService {
-  wwordsServer = 'https://wwords-server.herokuapp.com/translate?word=';
-  // wwordsServer = 'http://localhost:3000/translate?word=';
+  wwordsServer = 'https://wwords-server.herokuapp.com/';
+  // wwordsServer = 'http://localhost:3000/';
 
-  constructor(private httpClient: HttpClient) {
-    this.httpClient.get(this.wwordsServer + 'wake up', { withCredentials: true })
+  constructor(private httpClient: HttpClient) {//*Wake up the app
+    const url = this.wwordsServer + 'translate?word=' + 'wake up';
+    const options = {
+      withCredentials: true
+    };
+    this.httpClient.get(url, options)
       .subscribe();
   }
 
-  getTranslate(word) {
-    return this.httpClient.get(this.wwordsServer + word, { withCredentials: true })
-      .map((res: any) => {
-        return res.words;
-      }, err => {
-        console.log('err: ', err);
-      });
+  getTranslate(word) {//*Make request to Server
+    const url = this.wwordsServer + 'translate?word=' + word;
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.get(url, options);
+  }
+
+  saveWord(word, translation) {//*Make request for saving word
+    const url = this.wwordsServer + 'words/add';
+    const body = {
+      word: word,
+      translation: translation
+    };
+    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+    const options = {
+      withCredentials: true,
+      headers: headers
+    };
+    return this.httpClient.post(url, body, options);
   }
 }

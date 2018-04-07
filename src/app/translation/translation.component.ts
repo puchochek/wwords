@@ -40,4 +40,11 @@ export class TranslationComponent implements OnInit {
     this.word = '';
     this.translate = [];
   }
+
+  saveWord() {
+    this.wwordsServer.saveWord(this.word, this.translate)
+      .subscribe((result) => {
+        console.log(result);
+      });
+  }
 }
