@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { TranslationComponent } from './translation/translation.component';
 
 import { WwordsServerService } from './wwords-server.service';
+import { WordsListComponent } from './words-list/words-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TranslationComponent
+    TranslationComponent,
+    WordsListComponent
   ],
   imports: [
     BrowserModule,

@@ -41,4 +41,12 @@ export class WwordsServerService {
     };
     return this.httpClient.post(url, body, options);
   }
+
+  getWordsList() {
+    const url = this.wwordsServer + 'words/get';
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.get(url, options);
+  }
 }
