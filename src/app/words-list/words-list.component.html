@@ -1,3 +1,5 @@
-<p>
-  words-list works!
-</p>
+<div class = "userWords">
+<ul *ngFor = "let myList of userList">
+    <li> {{myList.word}} {{myList.translation}}</li>
+  </ul>
+</div>

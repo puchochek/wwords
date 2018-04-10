@@ -9,9 +9,12 @@ import { WwordsServerService } from '../wwords-server.service';
 
 export class WordsListComponent implements OnInit {
   words: any;
+  userList: Array<any>;
+
+
   constructor(
     private wwordsServer: WwordsServerService
-  ) { 
+  ) {
     this.getWordsList();
   }
 
@@ -20,9 +23,10 @@ export class WordsListComponent implements OnInit {
 
   getWordsList() {
     this.wwordsServer.getWordsList()
-      .subscribe((list) => {
-        console.log(list);
-      })
+      .subscribe((list: Array<any>) => {
+      this.userList = list['words'];
+      console.log(111, this.userList);
+    })
   }
 
 }
