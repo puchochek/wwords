@@ -1,15 +1,19 @@
 .question {
   font-weight: bold;
+  font-size: 20px;
 }
 
 .response {
   font-weight: bold;
+  font-size: 20px;
 }
 
 .loading {
   color: grey;
+  font-size: 20px;
 }
 
 .translation {
   border: 3px groove lightgrey;
+  font-size: 20px;
 }

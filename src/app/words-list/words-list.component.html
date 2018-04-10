@@ -1,5 +1,8 @@
-<div class = "userWords">
+
+<button (click)="showWordsButton()">{{ showWords ? 'Hide my words' : 'Show my words' }}</button>
+<div *ngIf= "showWords">
 <ul *ngFor = "let myList of userList">
-    <li> {{myList.word}} {{myList.translation}}</li>
+    <li class = "english"> {{myList.word}} </li>
+    <li class = "russian"> {{myList.translation}}</li>
   </ul>
-</div>
+  

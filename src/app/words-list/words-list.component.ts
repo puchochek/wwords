@@ -10,7 +10,8 @@ import { WwordsServerService } from '../wwords-server.service';
 export class WordsListComponent implements OnInit {
   words: any;
   userList: Array<any>;
-
+  showWords: boolean = false;
+  
 
   constructor(
     private wwordsServer: WwordsServerService
@@ -21,12 +22,17 @@ export class WordsListComponent implements OnInit {
   ngOnInit() {
   }
 
+  showWordsButton() {
+    this.showWords = !this.showWords;
+  }
+
+
   getWordsList() {
     this.wwordsServer.getWordsList()
       .subscribe((list: Array<any>) => {
-      this.userList = list['words'];
-      console.log(111, this.userList);
-    })
+        this.userList = list['words'];
+        console.log(111, this.userList);
+      })
   }
 
 }
