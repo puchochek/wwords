@@ -12,6 +12,7 @@ export class TranslationComponent implements OnInit {
   arr: any;
   loading: boolean = false;
   word: string = '';
+  category: any;
 
   constructor(
     private wwordsServer: WwordsServerService
@@ -42,7 +43,7 @@ export class TranslationComponent implements OnInit {
   }
 
   saveWord() {
-    this.wwordsServer.saveWord(this.word, this.translate)
+    this.wwordsServer.saveWord(this.word, this.translate, this.category)
       .subscribe((result) => {
         console.log(result);
       });

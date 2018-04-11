@@ -28,11 +28,12 @@ export class WwordsServerService {
     return this.httpClient.get(url, options);
   }
 
-  saveWord(word, translation) {//*Make request for saving word
+  saveWord(word, translation, category) {//*Make request for saving word
     const url = this.wwordsServer + 'words/add';
     const body = {
       word: word,
-      translation: translation
+      translation: translation,
+      category: category
     };
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     const options = {

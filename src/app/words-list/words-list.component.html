@@ -1,8 +1,8 @@
-
-<button (click)="showWordsButton()">{{ showWords ? 'Hide my words' : 'Show my words' }}</button>
-<div *ngIf= "showWords">
-<ul *ngFor = "let myList of userList">
-    <li class = "english"> {{myList.word}} </li>
-    <li class = "russian"> {{myList.translation}}</li>
+<button (click)="showWordsButton()">
+  {{ showWords ? 'Hide my words' : 'Show my words' }}</button>
+<div *ngIf="showWords">
+  <ul *ngFor="let myList of userList">
+    <li class="english"> {{myList.word}} </li>
+    <li class="category"> {{myList.category}} </li>
+    <li class="russian"> {{myList.translation}}</li>
   </ul>
-  
