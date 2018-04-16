@@ -8,31 +8,49 @@ import { WwordsServerService } from '../wwords-server.service';
 })
 
 export class WordsListComponent implements OnInit {
-  words: any;
   userList: Array<any>;
-  showWords: boolean = false;
-  
+  showCategoryWords: any = {};
+  categoryList: any;
+  loading: boolean;
+
 
   constructor(
     private wwordsServer: WwordsServerService
   ) {
     this.getWordsList();
+    this.wwordsServer.saveWordEvent //Even emitter for adding new words from translation component
+      .subscribe(() => {
+        this.getWordsList();
+      });
   }
 
   ngOnInit() {
   }
 
-  showWordsButton() {
-    this.showWords = !this.showWords;
+  showWordsButton(category) {
+    this.showCategoryWords[category] = !this.showCategoryWords[category];
   }
 
 
   getWordsList() {
+    this.loading = true;
     this.wwordsServer.getWordsList()
-      .subscribe((list: Array<any>) => {
-        this.userList = list['words'];
-        console.log(111, this.userList);
+      .subscribe((list: { words: Array<any> }) => {
+        this.loading = false;
+        if (!list) return;
+        this.userList = list.words;
+        this.categoryList = this.parseCategories(list.words);
       })
   }
 
+  parseCategories(words) { //Removes the same category elements
+    if (!words) return [];
+
+    const categoryObject = {};
+    words.forEach(word => {
+      categoryObject[word.category] = true;
+    });
+
+    return Object.keys(categoryObject);
+  }
 }

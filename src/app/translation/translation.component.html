@@ -8,7 +8,7 @@
   <div *ngIf="loading">
     <span class="loading">I'm looking for translation</span>
   </div>
-  
+
   <div *ngIf="translate.length">
     <span class="response">Here is your word:</span>
     <br>
@@ -19,6 +19,8 @@
         </li>
       </ul>
     </div>
+    <span class="question">Add to category:</span>
     <input [(ngModel)]="category" (keyup)="onKey()" type="text" size="40">
     <button (click)="saveWord()">Remember</button>
+
   </div>

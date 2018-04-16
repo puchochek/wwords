@@ -9,7 +9,6 @@ import { WwordsServerService } from '../wwords-server.service';
 export class TranslationComponent implements OnInit {
   translate: any = [];
   timeId: any;
-  arr: any;
   loading: boolean = false;
   word: string = '';
   category: any;
@@ -46,8 +45,9 @@ export class TranslationComponent implements OnInit {
     this.wwordsServer.saveWord(this.word, this.translate, this.category)
       .subscribe((result) => {
         console.log(result);
+        this.wwordsServer.saveWordEvent.emit();
       });
   }
 
- 
+
 }
