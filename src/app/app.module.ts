@@ -8,13 +8,15 @@ import { TranslationComponent } from './translation/translation.component';
 
 import { WwordsServerService } from './wwords-server.service';
 import { WordsListComponent } from './words-list/words-list.component';
+import { AccountComponent } from './account/account.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TranslationComponent,
-    WordsListComponent
+    WordsListComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

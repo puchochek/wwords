@@ -7,6 +7,8 @@ import { EventEmitter } from '@angular/core';
 
 import 'rxjs/add/operator/map';
 
+let accessToken; 
+
 @Injectable()
 export class WwordsServerService {
   wwordsServer = 'https://wwords-server.herokuapp.com/';
@@ -34,7 +36,8 @@ export class WwordsServerService {
     const body = {
       word: word,
       translation: translation,
-      category: category
+      category: category,
+      token: accessToken
     };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     
@@ -42,7 +45,11 @@ export class WwordsServerService {
   }
 
   getWordsList() {
-    const url = this.wwordsServer + 'words/get';
+    const url = this.wwordsServer + 'words/get' + '?token=' + accessToken;
     return this.httpClient.get(url, this.options);
+  }
+
+  setAccessToken(token) {
+    accessToken = token;
   }
 }

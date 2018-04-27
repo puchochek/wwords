@@ -1,0 +1,7 @@
+<p *ngIf="!loggedIn">
+  <button (click)="googleLogIn()">Log in with Google</button>
+</p>
+
+<p *ngIf="loggedIn">
+  You're logged in with Google.
+</p>
